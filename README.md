@@ -1,0 +1,1 @@
+This is an exercise from the JavaScript fundamentals course, which is a game of rock, paper, scissors.
