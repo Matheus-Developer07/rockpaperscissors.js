@@ -1,102 +1,58 @@
 const rock = document.querySelector("#rockButton")
 const paper = document.querySelector("#paperButton")
 const scissors = document.querySelector("#scissorsButton")
+const parentResult = document.querySelector("#divResults")
 const div = document.createElement("div")
     div.classList.add("divResult")
 const game = document.createElement("span")
     div.classList.add("result")
-
-function addElements(){
-    
-}
+parentResult.appendChild(game)
+const placar = document.createElement("span")
+    div.classList.add("result")
+parentResult.appendChild(placar)
 
 function getComputerChoice(){
-    return Math.floor(Math.random() * 3);
+    const random = Math.floor(Math.random() * 3);
+
+    if (random === 0) return "rock";
+    if (random === 1) return "paper";
+    return "scissors";
 }
 
-function getHumanChoice(){
-    let a
-    rock.addEventListener("click", () => {
-        a = "rock"
-    })
-    paper.addEventListener("click", () => {
-        a = "paper"
-    })
-    scissors.addEventListener("click", () => {
-        a = "scissors"
-    })
-    return a
+function addElements(a, b) {
+    game.textContent = `Human ${a} X ${b} Computer`;
 }
 
-function playRound(humanChoice, computerChoice){
+function playRound(humanChoice, computerChoice) {
+    let result = "";
+    let humanScore = 0;
+    let computerScore = 0;
 
-    let result = null
-
-    if(humanChoice === "rock"){
-        if(computerChoice === "rock"){
-            result = "Nothing came of it! A draw."
-            computerScore = computerScore + 1
-            humanScore = humanScore + 1
-            game.textContent(result)
-        }else if(computerChoice === "paper"){
-            result = "You lost! Paper beat rock!"
-            game.textContent(result)
-            computerScore = computerScore + 1
-        }else if(computerChoice === "scissors"){
-            result = "You won! Rock beat scissors!"
-            game.textContent(result)
-            humanScore = humanScore + 1
-        }
-    }else if(humanChoice === "paper"){
-        if(computerChoice === "paper"){
-            result = "Nothing came of it! A draw."
-            computerScore = computerScore + 1
-            humanScore = humanScore + 1
-            game.textContent(result)
-        }else if(computerChoice === "scissors"){
-            result = "You lost! Scissors beat paper!"
-            game.textContent(result)
-            computerScore = computerScore + 1
-        }else if(computerChoice === "rock"){
-            result = "You won! Paper beat rock!"
-            game.textContent(result)
-            humanScore = humanScore + 1
-        }
-    }else if(humanChoice === "scissors"){
-        if(computerChoice === "scissors"){
-            result = "Nothing came of it! A draw."
-            computerScore = computerScore + 1
-            humanScore = humanScore + 1
-            game.textContent(result)
-        }else if(computerChoice === "rock"){
-            result = "You lost! Rock beat scissors!"
-            game.textContent(result)
-            computerScore = computerScore + 1
-        }else if(computerChoice === "paper"){
-            result = "You won! Scissors beat paper!"
-            game.textContent(result)
-            humanScore = humanScore + 1
-        }
+    if (humanChoice === computerChoice) {
+        result = "Empate!";
+        humanScore++;
+        computerScore++;
+    } else if (
+        (humanChoice === "rock" && computerChoice === "scissors") ||
+        (humanChoice === "paper" && computerChoice === "rock") ||
+        (humanChoice === "scissors" && computerChoice === "paper")
+    ) {
+        result = "Você ganhou!";
+        humanScore++;
+    } else {
+        result = "Você perdeu!";
+        computerScore++;
     }
+
+    placar.textContent = `  ${result} | ${humanScore} x ${computerScore}`;
 }
 
-for(let i = 0; i < 5; i++){
-    let human = getHumanChoice()
-    let computer = getComputerChoice()
-    if(computer === 0){
-        computer = "rock"
-    }else if(computer === 1){
-        computer = "paper"
-    }else{
-        computer = "scissors"
-    }
-    playRound(human, computer)
-    console.log(`Placar: Humano ${humanScore} X ${computerScore} Computador`)
+function playGame(humanChoice) {
+    const computer = getComputerChoice();
+
+    addElements(humanChoice, computer);
+    playRound(humanChoice, computer);
 }
-if(humanScore > computerScore){
-    console.log("Você ganhou!")
-}else if(humanScore < computerScore){
-    console.log("Você perdeu!")
-}else if(humanScore === computerScore){
-    console.log("Empate!")
-}
+rock.addEventListener("click", () => playGame("rock"));
+paper.addEventListener("click", () => playGame("paper"));
+scissors.addEventListener("click", () => playGame("scissors"));
