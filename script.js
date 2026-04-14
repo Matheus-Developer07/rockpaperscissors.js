@@ -1,28 +1,31 @@
+const rock = document.querySelector("#rockButton")
+const paper = document.querySelector("#paperButton")
+const scissors = document.querySelector("#scissorsButton")
+const div = document.createElement("div")
+    div.classList.add("divResult")
+const game = document.createElement("span")
+    div.classList.add("result")
+
+function addElements(){
+    
+}
+
 function getComputerChoice(){
     return Math.floor(Math.random() * 3);
 }
 
 function getHumanChoice(){
     let a
-    a = prompt("Rock, paper or scissors?")
-    if(a === null) return null;
-    a = a.toLowerCase()
+    rock.addEventListener("click", () => {
+        a = "rock"
+    })
+    paper.addEventListener("click", () => {
+        a = "paper"
+    })
+    scissors.addEventListener("click", () => {
+        a = "scissors"
+    })
     return a
-}
-
-let humanScore = 0
-let computerScore = 0
-
-let algorithm = getComputerChoice()
-if(algorithm === 0){
-    algorithm = "Rock"
-    algorithm = algorithm.toLowerCase()
-}else if(algorithm === 1){
-    algorithm = "Paper"
-    algorithm = algorithm.toLowerCase()
-}else if(algorithm === 2){
-    algorithm = "Scissors"
-    algorithm = algorithm.toLowerCase()
 }
 
 function playRound(humanChoice, computerChoice){
@@ -34,14 +37,14 @@ function playRound(humanChoice, computerChoice){
             result = "Nothing came of it! A draw."
             computerScore = computerScore + 1
             humanScore = humanScore + 1
-            console.log(result)
+            game.textContent(result)
         }else if(computerChoice === "paper"){
             result = "You lost! Paper beat rock!"
-            console.log(result)
+            game.textContent(result)
             computerScore = computerScore + 1
         }else if(computerChoice === "scissors"){
             result = "You won! Rock beat scissors!"
-            console.log(result)
+            game.textContent(result)
             humanScore = humanScore + 1
         }
     }else if(humanChoice === "paper"){
@@ -49,14 +52,14 @@ function playRound(humanChoice, computerChoice){
             result = "Nothing came of it! A draw."
             computerScore = computerScore + 1
             humanScore = humanScore + 1
-            console.log(result)
+            game.textContent(result)
         }else if(computerChoice === "scissors"){
             result = "You lost! Scissors beat paper!"
-            console.log(result)
+            game.textContent(result)
             computerScore = computerScore + 1
         }else if(computerChoice === "rock"){
             result = "You won! Paper beat rock!"
-            console.log(result)
+            game.textContent(result)
             humanScore = humanScore + 1
         }
     }else if(humanChoice === "scissors"){
@@ -64,14 +67,14 @@ function playRound(humanChoice, computerChoice){
             result = "Nothing came of it! A draw."
             computerScore = computerScore + 1
             humanScore = humanScore + 1
-            console.log(result)
+            game.textContent(result)
         }else if(computerChoice === "rock"){
             result = "You lost! Rock beat scissors!"
-            console.log(result)
+            game.textContent(result)
             computerScore = computerScore + 1
         }else if(computerChoice === "paper"){
             result = "You won! Scissors beat paper!"
-            console.log(result)
+            game.textContent(result)
             humanScore = humanScore + 1
         }
     }

@@ -1,0 +1,35 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    margin: 0;
+}
+/* Buttons */
+.divButtons{
+    display: flex;
+    justify-content: center;
+}
+.buttons{
+    margin: 0.6em 1.2em;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    background-color: red;
+    padding: 1em;
+    box-shadow: 0px 0px 13px brown;
+}
+/* Results */
+.centerResult{
+    display: flex;
+    justify-content: center;
+    margin-top: 3%;
+}
+#divResults{
+    width: 80%;
+    background-color: red;
+    border-radius: 15px;
+    box-shadow: 0px 0px 13px brown;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
