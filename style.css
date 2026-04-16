@@ -4,6 +4,16 @@
 body{
     margin: 0;
 }
+/* Header */
+.header{
+    background-color: red;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2%;
+    box-shadow: 0px 5px 0px brown;
+}
 /* Buttons */
 .divButtons{
     display: flex;
@@ -39,6 +49,14 @@ body{
     width: 50%;
     display: flex;
     justify-content: center;
+    align-items: center;
     box-shadow: 0px 0px 13px black;
     margin: 2%;
+}
+.result{
+    background-color: white;
+    margin-bottom: 2%;
+    padding: 4%;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px brown;
 }

@@ -5,10 +5,10 @@ const parentResult = document.querySelector("#divResults")
 const div = document.createElement("div")
     div.classList.add("divResult")
 const game = document.createElement("span")
-    div.classList.add("result")
+    game.classList.add("result")
 parentResult.appendChild(game)
 const placar = document.createElement("span")
-    div.classList.add("result")
+    placar.classList.add("result")
 parentResult.appendChild(placar)
 
 function getComputerChoice(){
@@ -23,10 +23,11 @@ function addElements(a, b) {
     game.textContent = `Human ${a} X ${b} Computer`;
 }
 
+let computerScore = 0
+let humanScore = 0
+
 function playRound(humanChoice, computerChoice) {
     let result = "";
-    let humanScore = 0;
-    let computerScore = 0;
 
     if (humanChoice === computerChoice) {
         result = "Empate!";
@@ -45,6 +46,7 @@ function playRound(humanChoice, computerChoice) {
     }
 
     placar.textContent = `  ${result} | ${humanScore} x ${computerScore}`;
+    
 }
 
 function playGame(humanChoice) {
@@ -53,6 +55,7 @@ function playGame(humanChoice) {
     addElements(humanChoice, computer);
     playRound(humanChoice, computer);
 }
+
 rock.addEventListener("click", () => playGame("rock"));
 paper.addEventListener("click", () => playGame("paper"));
 scissors.addEventListener("click", () => playGame("scissors"));
